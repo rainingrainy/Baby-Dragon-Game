@@ -17,7 +17,7 @@ namespace Baby_Dragon_Game
         BottomObstacle[] bobstacle = new BottomObstacle[3];
         Spacing[] spacing = new Spacing[3];
         Graphics g;
-        bool isjumping, spacebar;
+        bool isjumping, spacebar, gameover, scoring;
         int i, arraycount, gap;
         public FormGame() //Constructor to initialize the properties 
         {
@@ -51,9 +51,9 @@ namespace Baby_Dragon_Game
 
         private void timerObstacles_Tick(object sender, EventArgs e) //Timer for the all the obstacle classes
         {
-            //Obstacle movement
             for (i = 0; i < arraycount; i++)
             {
+                //Obstacle movement
                 tobstacle[i].moveTobstacle();
                 if (tobstacle[i].TobstacleRect.Right < MainPanel.Left)
                 {
@@ -72,7 +72,43 @@ namespace Baby_Dragon_Game
                     spacing[i].x = MainPanel.Right + 310;
                     spacing[i].spacingRect.Location = new Point(tobstacle[i].x, tobstacle[i].y);
                 }
+            }
+            //Collisions
+            gameover = false;
+            scoring = false;
+            foreach (TopObstacle obstacleT in tobstacle)
+            {
+                if (dragon.dragonRect.IntersectsWith(obstacleT.TobstacleRect))
+                {
+                    gameover = true;
+                }
+            }
+            foreach (BottomObstacle obstacleB in bobstacle)
+            {
+                if (dragon.dragonRect.IntersectsWith(obstacleB.BobstacleRect))
+                {
+                    gameover = true;
+                }
+            }
+            foreach (Spacing spaces in spacing)
+            {
+                if (dragon.dragonRect.IntersectsWith(spaces.spacingRect))
+                {
+                    scoring = true;
+                }
+            }
 
+            if (gameover)
+            {
+                MainPanel.BackColor = Color.DarkBlue;
+            }
+            else if (scoring)
+            {
+                MainPanel.BackColor = Color.DarkGreen;
+            }
+            else
+            {
+                MainPanel.BackColor = Color.LightBlue;
             }
             MainPanel.Invalidate(); //Allows MainPanel to be redrawn
         }
