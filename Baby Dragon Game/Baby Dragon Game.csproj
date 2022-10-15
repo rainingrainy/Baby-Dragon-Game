@@ -47,6 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BabyDragon.cs" />
+    <Compile Include="BottomObstacle.cs" />
+    <Compile Include="Spacing.cs" />
+    <Compile Include="TopObstacle.cs" />
     <Compile Include="FormGame.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +86,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\BabyDragonPlace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TopObstaclePlace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SpacingPlace.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

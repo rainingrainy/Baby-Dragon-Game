@@ -45,7 +45,7 @@ namespace Baby_Dragon_Game
             this.MainPanel.BackColor = System.Drawing.Color.LightBlue;
             this.MainPanel.Location = new System.Drawing.Point(0, 0);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(984, 961);
+            this.MainPanel.Size = new System.Drawing.Size(985, 962);
             this.MainPanel.TabIndex = 0;
             this.MainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.MainPanel_Paint);
             // 
@@ -64,8 +64,6 @@ namespace Baby_Dragon_Game
             this.Load += new System.EventHandler(this.FormGame_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FormGame_KeyPress);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FormGame_KeyUp);
-            //this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FormGame_MouseClick);
-            //this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormGame_MouseDown);
             this.ResumeLayout(false);
 
         }

@@ -121,4 +121,10 @@
   <data name="BabyDragonPlace" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BabyDragonPlace.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="SpacingPlace" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SpacingPlace.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TopObstaclePlace" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TopObstaclePlace.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

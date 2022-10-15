@@ -13,11 +13,23 @@ namespace Baby_Dragon_Game
     public partial class FormGame : Form
     {
         BabyDragon dragon = new BabyDragon();
+        TopObstacle[] tobstacle = new TopObstacle[3];
+        BottomObstacle[] bobstacle = new BottomObstacle[3];
+        Spacing[] spacing = new Spacing[3];
         Graphics g;
         bool isjumping, spacebar;
+        int i, arraycount, gap;
         public FormGame() //Constructor to initialize the properties 
         {
             InitializeComponent();
+            arraycount = 3;
+            for (i = 0; i < arraycount; i++) //instantiation of every index
+            {
+                gap = (985 - 150) + (450 * -i);
+                tobstacle[i] = new TopObstacle(gap);
+                bobstacle[i] = new BottomObstacle(gap);
+                spacing[i] = new Spacing(gap);
+            }
         }
 
         private void FormGame_Load(object sender, EventArgs e) //Method for executing events that happen when the form loads
@@ -29,6 +41,12 @@ namespace Baby_Dragon_Game
         {
             g = e.Graphics;
             dragon.drawDragon(g);
+            for (i = 0; i < 3; i++) //Drawing every instance of every array
+            {
+                tobstacle[i].drawTobstacle(g);
+                bobstacle[i].drawBobstacle(g);
+                spacing[i].drawSpacing(g);
+            }
         }
 
         private void timerDragon_Tick(object sender, EventArgs e) //Timer for the BabyDragon class
