@@ -30,7 +30,8 @@ namespace Baby_Dragon_Game
 
         public void moveSpacing() //Method that allows the player to input and move the class
         {
-
+            x -= obstacleSpeed;
+            spacingRect.Location = new Point(x, y);
         }
     }
 }

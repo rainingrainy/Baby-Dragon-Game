@@ -32,6 +32,7 @@ namespace Baby_Dragon_Game
             this.components = new System.ComponentModel.Container();
             this.timerDragon = new System.Windows.Forms.Timer(this.components);
             this.MainPanel = new Baby_Dragon_Game.MainPanel();
+            this.timerObstacles = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // timerDragon
@@ -48,6 +49,12 @@ namespace Baby_Dragon_Game
             this.MainPanel.Size = new System.Drawing.Size(985, 962);
             this.MainPanel.TabIndex = 0;
             this.MainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.MainPanel_Paint);
+            // 
+            // timerObstacles
+            // 
+            this.timerObstacles.Enabled = true;
+            this.timerObstacles.Interval = 50;
+            this.timerObstacles.Tick += new System.EventHandler(this.timerObstacles_Tick);
             // 
             // FormGame
             // 
@@ -71,6 +78,7 @@ namespace Baby_Dragon_Game
         #endregion
         private System.Windows.Forms.Timer timerDragon;
         private MainPanel MainPanel;
+        private System.Windows.Forms.Timer timerObstacles;
     }
 }
 

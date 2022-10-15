@@ -30,7 +30,8 @@ namespace Baby_Dragon_Game
 
         public void moveTobstacle() //Method that allows the player to input and move the class
         {
-
+            x -= obstacleSpeed;
+            TobstacleRect.Location = new Point(x, y);
         }
     }
 }

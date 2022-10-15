@@ -25,7 +25,7 @@ namespace Baby_Dragon_Game
             arraycount = 3;
             for (i = 0; i < arraycount; i++) //instantiation of every index
             {
-                gap = (985 - 150) + (450 * -i);
+                gap = 835 + (450 * -i);
                 tobstacle[i] = new TopObstacle(gap);
                 bobstacle[i] = new BottomObstacle(gap);
                 spacing[i] = new Spacing(gap);
@@ -41,12 +41,40 @@ namespace Baby_Dragon_Game
         {
             g = e.Graphics;
             dragon.drawDragon(g);
-            for (i = 0; i < 3; i++) //Drawing every instance of every array
+            for (i = 0; i < arraycount; i++) //Drawing every instance of every array
             {
                 tobstacle[i].drawTobstacle(g);
                 bobstacle[i].drawBobstacle(g);
                 spacing[i].drawSpacing(g);
             }
+        }
+
+        private void timerObstacles_Tick(object sender, EventArgs e) //Timer for the all the obstacle classes
+        {
+            //Obstacle movement
+            for (i = 0; i < arraycount; i++)
+            {
+                tobstacle[i].moveTobstacle();
+                if (tobstacle[i].TobstacleRect.Right < MainPanel.Left)
+                {
+                    tobstacle[i].x = MainPanel.Right + 210;
+                    tobstacle[i].TobstacleRect.Location = new Point(tobstacle[i].x, tobstacle[i].y);
+                }
+                bobstacle[i].moveBobstacle();
+                if (bobstacle[i].BobstacleRect.Right < MainPanel.Left)
+                {
+                    bobstacle[i].x = MainPanel.Right + 210;
+                    bobstacle[i].BobstacleRect.Location = new Point(bobstacle[i].x, bobstacle[i].y);
+                }
+                spacing[i].moveSpacing();
+                if (spacing[i].spacingRect.Right < MainPanel.Left)
+                {
+                    spacing[i].x = MainPanel.Right + 310;
+                    spacing[i].spacingRect.Location = new Point(tobstacle[i].x, tobstacle[i].y);
+                }
+
+            }
+            MainPanel.Invalidate(); //Allows MainPanel to be redrawn
         }
 
         private void timerDragon_Tick(object sender, EventArgs e) //Timer for the BabyDragon class
