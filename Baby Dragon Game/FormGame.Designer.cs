@@ -30,9 +30,15 @@ namespace Baby_Dragon_Game
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.MainPanel = new System.Windows.Forms.Panel();
             this.timerDragon = new System.Windows.Forms.Timer(this.components);
+            this.MainPanel = new Baby_Dragon_Game.MainPanel();
             this.SuspendLayout();
+            // 
+            // timerDragon
+            // 
+            this.timerDragon.Enabled = true;
+            this.timerDragon.Interval = 50;
+            this.timerDragon.Tick += new System.EventHandler(this.timerDragon_Tick);
             // 
             // MainPanel
             // 
@@ -43,32 +49,30 @@ namespace Baby_Dragon_Game
             this.MainPanel.TabIndex = 0;
             this.MainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.MainPanel_Paint);
             // 
-            // timerDragon
-            // 
-            this.timerDragon.Enabled = true;
-            this.timerDragon.Interval = 50;
-            this.timerDragon.Tick += new System.EventHandler(this.timerDragon_Tick);
-            // 
             // FormGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 961);
             this.Controls.Add(this.MainPanel);
+            this.KeyPreview = true;
             this.MaximumSize = new System.Drawing.Size(1000, 1000);
             this.MinimumSize = new System.Drawing.Size(1000, 1000);
             this.Name = "FormGame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Baby Dragon Game";
             this.Load += new System.EventHandler(this.FormGame_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FormGame_KeyPress);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FormGame_KeyUp);
+            //this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FormGame_MouseClick);
+            //this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormGame_MouseDown);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel MainPanel;
         private System.Windows.Forms.Timer timerDragon;
+        private MainPanel MainPanel;
     }
 }
 

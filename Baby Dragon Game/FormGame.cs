@@ -14,6 +14,7 @@ namespace Baby_Dragon_Game
     {
         BabyDragon dragon = new BabyDragon();
         Graphics g;
+        bool isjumping, spacebar;
         public FormGame() //Constructor to initialize the properties 
         {
             InitializeComponent();
@@ -30,14 +31,48 @@ namespace Baby_Dragon_Game
             dragon.drawDragon(g);
         }
 
-
-
-
-
-
         private void timerDragon_Tick(object sender, EventArgs e) //Timer for the BabyDragon class
         {
+            //Dragon movement
+            if (isjumping)
+            {
+                dragon.moveDragon();
+                isjumping = false;
+            }
+            else
+            {
+                dragon.y += dragon.gravity;
+                dragon.dragonRect.Location = new Point(dragon.x, dragon.y);
+            }
+            MainPanel.Invalidate(); //Allows MainPanel to be redrawn
+        }
 
+        private void FormGame_KeyPress(object sender, KeyPressEventArgs e) //Method for pressing keys
+        {
+            if (e.KeyChar == Convert.ToChar(" ") && spacebar) //Validates user input for pressing spacebar
+            {
+                isjumping = true;
+                spacebar = false;
+            }
+        }
+
+        private void FormGame_KeyUp(object sender, KeyEventArgs e) //Validates user input for checking the spacebar is up
+        {
+            if (e.KeyData == Keys.Space)
+            {
+                spacebar = true;
+            }
+        }
+    }
+    public class MainPanel : System.Windows.Forms.Panel //Class for helping in removing the flickering
+    {
+        public MainPanel() //Constructor to initialize the properties 
+        {
+            this.SetStyle(
+                System.Windows.Forms.ControlStyles.UserPaint |
+                System.Windows.Forms.ControlStyles.AllPaintingInWmPaint |
+                System.Windows.Forms.ControlStyles.OptimizedDoubleBuffer,
+                true);
         }
     }
 }

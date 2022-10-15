@@ -9,12 +9,12 @@ namespace Baby_Dragon_Game
 {
     class BabyDragon
     {
-        int x, y, width, height, gravity;
-        Rectangle dragonRect;
+        public int x, y, width, height, gravity;
+        public Rectangle dragonRect;
         Image dragonImg;
         public BabyDragon() //Constructor to initialize the properties
         {
-            x = 10;
+            x = 50;
             y = 10;
             width = 100;
             height = 100;
@@ -30,7 +30,8 @@ namespace Baby_Dragon_Game
 
         public void moveDragon() //Method that allows the player to input and move the class
         {
-
+            y -= 50;
+            dragonRect.Location = new Point(x, y);
         }
     }
 }
