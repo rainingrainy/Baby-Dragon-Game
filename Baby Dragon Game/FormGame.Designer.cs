@@ -31,10 +31,12 @@ namespace Baby_Dragon_Game
         {
             this.components = new System.ComponentModel.Container();
             this.timerDragon = new System.Windows.Forms.Timer(this.components);
-            this.MainPanel = new Baby_Dragon_Game.MainPanel();
             this.timerObstacles = new System.Windows.Forms.Timer(this.components);
-            this.label1 = new System.Windows.Forms.Label();
+            this.MainPanel = new Baby_Dragon_Game.MainPanel();
+            this.NameText = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.ScoreLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.MainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,9 +46,17 @@ namespace Baby_Dragon_Game
             this.timerDragon.Interval = 50;
             this.timerDragon.Tick += new System.EventHandler(this.timerDragon_Tick);
             // 
+            // timerObstacles
+            // 
+            this.timerObstacles.Enabled = true;
+            this.timerObstacles.Interval = 50;
+            this.timerObstacles.Tick += new System.EventHandler(this.timerObstacles_Tick);
+            // 
             // MainPanel
             // 
             this.MainPanel.BackColor = System.Drawing.Color.LightBlue;
+            this.MainPanel.Controls.Add(this.NameText);
+            this.MainPanel.Controls.Add(this.label2);
             this.MainPanel.Controls.Add(this.ScoreLabel);
             this.MainPanel.Controls.Add(this.label1);
             this.MainPanel.Location = new System.Drawing.Point(0, 0);
@@ -55,21 +65,26 @@ namespace Baby_Dragon_Game
             this.MainPanel.TabIndex = 0;
             this.MainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.MainPanel_Paint);
             // 
-            // timerObstacles
+            // NameText
             // 
-            this.timerObstacles.Enabled = true;
-            this.timerObstacles.Interval = 50;
-            this.timerObstacles.Tick += new System.EventHandler(this.timerObstacles_Tick);
+            this.NameText.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NameText.Location = new System.Drawing.Point(668, 12);
+            this.NameText.MaxLength = 15;
+            this.NameText.Name = "NameText";
+            this.NameText.Size = new System.Drawing.Size(304, 44);
+            this.NameText.TabIndex = 3;
+            //this.NameText.TextChanged += new System.EventHandler(this.NameText_TextChanged);
+            this.NameText.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NameText_KeyPress);
             // 
-            // label1
+            // label2
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 37);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Score:";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(559, 13);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(112, 37);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Name:";
             // 
             // ScoreLabel
             // 
@@ -80,6 +95,16 @@ namespace Baby_Dragon_Game
             this.ScoreLabel.Size = new System.Drawing.Size(36, 37);
             this.ScoreLabel.TabIndex = 1;
             this.ScoreLabel.Text = "0";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(109, 37);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Score:";
             // 
             // FormGame
             // 
@@ -108,6 +133,8 @@ namespace Baby_Dragon_Game
         private System.Windows.Forms.Timer timerObstacles;
         private System.Windows.Forms.Label ScoreLabel;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox NameText;
+        private System.Windows.Forms.Label label2;
     }
 }
 

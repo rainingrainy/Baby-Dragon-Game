@@ -19,6 +19,20 @@ namespace Baby_Dragon_Game
         Graphics g;
         bool isjumping, spacebar, gameover, scoring, collision;
         int i, arraycount, gap, score;
+
+        private void NameText_KeyPress(object sender, KeyPressEventArgs e) //Method for pressing keys only when NameText is focused
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar)) //NameText validation
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == (char)Keys.Return) //Validates user input for pressing enter
+            {
+                NameText.Enabled = false;   
+            }
+        }
+
         public FormGame() //Constructor to initialize the properties 
         {
             InitializeComponent();
@@ -35,6 +49,8 @@ namespace Baby_Dragon_Game
         private void FormGame_Load(object sender, EventArgs e) //Method for executing events that happen when the form loads
         {
             score = 0;
+            timerDragon.Stop();
+            timerObstacles.Stop();
         }
 
         private void MainPanel_Paint(object sender, PaintEventArgs e) //Method for painting on the MainPanel
