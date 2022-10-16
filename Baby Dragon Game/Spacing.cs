@@ -12,12 +12,12 @@ namespace Baby_Dragon_Game
         public int x, y, width, height, obstacleSpeed;
         public Rectangle spacingRect;
         Image spacingImg;
-        public Spacing(int gap) //Constructor to initialize the properties
+        public Spacing(int gap, int obs) //Constructor to initialize the properties
         {
-            x = 50 + gap;
-            y = 450;
+            x = gap + 50;
+            y = obs;
             width = 50;
-            height = 100;
+            height = 200;
             obstacleSpeed = 10;
             spacingRect = new Rectangle(x, y, width, height);
             spacingImg = Properties.Resources.SpacingPlace;

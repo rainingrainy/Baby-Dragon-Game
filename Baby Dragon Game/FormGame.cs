@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Baby_Dragon_Game
 {
@@ -17,8 +18,10 @@ namespace Baby_Dragon_Game
         BottomObstacle[] bobstacle = new BottomObstacle[3];
         Spacing[] spacing = new Spacing[3];
         Graphics g;
-        bool isjumping, spacebar, gameover, scoring, collision;
-        int i, arraycount, gap, score;
+        bool isjumping, spacebar, gameover, scoring, collision, entername, changeT, changeB, changeS;
+        int i, arraycount, gap, score, gapnum, obs;
+
+        Random r = new Random();
 
         private void NameText_KeyPress(object sender, KeyPressEventArgs e) //Method for pressing keys only when NameText is focused
         {
@@ -29,18 +32,29 @@ namespace Baby_Dragon_Game
 
             if (e.KeyChar == (char)Keys.Return) //Validates user input for pressing enter
             {
-                NameText.Enabled = false;   
+                NameText.ReadOnly = true;
+                entername = true;
             }
         }
 
-        private void MenuStart_Click(object sender, EventArgs e)
+        private void MenuRestart_Click(object sender, EventArgs e) //Method for when restart is clicked
         {
-
+            Application.Restart();
         }
 
-        private void MenuStop_Click(object sender, EventArgs e)
+        private void MenuStart_Click(object sender, EventArgs e) //Method for when start is clicked
         {
+            if (entername && gameover == false)
+            {
+                timerDragon.Start();
+                timerObstacles.Start();
+            }
+        }
 
+        private void MenuStop_Click(object sender, EventArgs e) ////Method for when stop is clicked
+        {
+            timerDragon.Stop();
+            timerObstacles.Stop();
         }
 
         public FormGame() //Constructor to initialize the properties 
@@ -49,18 +63,27 @@ namespace Baby_Dragon_Game
             arraycount = 3;
             for (i = 0; i < arraycount; i++) //instantiation of every index
             {
-                gap = 835 + (450 * -i);
-                tobstacle[i] = new TopObstacle(gap);
-                bobstacle[i] = new BottomObstacle(gap);
-                spacing[i] = new Spacing(gap);
+                gapnum = 400;
+                obs = r.Next(100, 500);
+                gap = MainPanel.Right + (gapnum * i);
+                tobstacle[i] = new TopObstacle(gap, obs);
+                obs = 725 - tobstacle[i].height;
+                bobstacle[i] = new BottomObstacle(gap, obs);
+                obs = tobstacle[i].height;
+                spacing[i] = new Spacing(gap, obs);
             }
         }
 
         private void FormGame_Load(object sender, EventArgs e) //Method for executing events that happen when the form loads
         {
             score = 0;
+            entername = false;
+            spacebar = true;
             timerDragon.Stop();
             timerObstacles.Stop();
+            GameOverLabel.Visible = false;
+            MessageBox.Show("Welcome to Baby Dragon!  To play the game, use your spacebar to avoid the oncoming obstacles.  " +
+                "Every succesful dodge will increase your score but make sure not to touch the obstacles or it's game over!  Click stop to restart.");
         }
 
         private void MainPanel_Paint(object sender, PaintEventArgs e) //Method for painting on the MainPanel
@@ -83,20 +106,81 @@ namespace Baby_Dragon_Game
                 tobstacle[i].moveTobstacle();
                 if (tobstacle[i].TobstacleRect.Right < MainPanel.Left)
                 {
-                    tobstacle[i].x = MainPanel.Right + 210;
-                    tobstacle[i].TobstacleRect.Location = new Point(tobstacle[i].x, tobstacle[i].y);
+                    obs = r.Next(100, 500);
+                    tobstacle[i] = new TopObstacle(gap, obs);
+                    changeT = true;
                 }
                 bobstacle[i].moveBobstacle();
                 if (bobstacle[i].BobstacleRect.Right < MainPanel.Left)
                 {
-                    bobstacle[i].x = MainPanel.Right + 210;
-                    bobstacle[i].BobstacleRect.Location = new Point(bobstacle[i].x, bobstacle[i].y);
+                    obs = 725 - tobstacle[i].height;
+                    bobstacle[i] = new BottomObstacle(gap, obs);
+                    changeB = true;
                 }
                 spacing[i].moveSpacing();
                 if (spacing[i].spacingRect.Right < MainPanel.Left)
                 {
-                    spacing[i].x = MainPanel.Right + 310;
-                    spacing[i].spacingRect.Location = new Point(tobstacle[i].x, tobstacle[i].y);
+                    obs = tobstacle[i].height;
+                    spacing[i] = new Spacing(gap, obs);
+                    changeS = true;
+                }
+
+                //Obstacle difficulty
+                if (score >= 5)
+                {
+                    tobstacle[i].obstacleSpeed = 12;
+                    bobstacle[i].obstacleSpeed = 12;
+                    spacing[i].obstacleSpeed = 12;
+                }
+                if (score >= 10)
+                {
+                    tobstacle[i].obstacleSpeed = 14;
+                    bobstacle[i].obstacleSpeed = 14;
+                    spacing[i].obstacleSpeed = 14;
+                }
+                if (score >= 15)
+                {
+                    tobstacle[i].obstacleSpeed = 16;
+                    bobstacle[i].obstacleSpeed = 16;
+                    spacing[i].obstacleSpeed = 16;
+                }
+                if (score >= 20)
+                {
+                    tobstacle[i].obstacleSpeed = 18;
+                    bobstacle[i].obstacleSpeed = 18;
+                    spacing[i].obstacleSpeed = 18;
+                }
+                if (score >= 25)
+                {
+                    tobstacle[i].obstacleSpeed = 20;
+                    bobstacle[i].obstacleSpeed = 20;
+                    spacing[i].obstacleSpeed = 20;
+                }
+                if (score >= 30)
+                {
+                    tobstacle[i].obstacleSpeed = 22;
+                    bobstacle[i].obstacleSpeed = 22;
+                    spacing[i].obstacleSpeed = 22;
+                }
+
+                //Sending obstacles back to the front
+                if (changeT)
+                {
+                    tobstacle[i].x = MainPanel.Right + (gapnum - tobstacle[i].width);
+                    tobstacle[i].TobstacleRect.Location = new Point(tobstacle[i].x, tobstacle[i].y);
+                    changeT = false;
+                }
+                if (changeB)
+                {
+                    bobstacle[i].x = MainPanel.Right + (gapnum - bobstacle[i].width);
+                    bobstacle[i].BobstacleRect.Location = new Point(bobstacle[i].x, bobstacle[i].y);
+                    changeB = false;
+                }
+                if (changeS)
+                {
+                    spacing[i].x = MainPanel.Right + (gapnum - spacing[i].width);
+                    spacing[i].spacingRect.Location = new Point(spacing[i].x, spacing[i].y);
+                    changeS = false;
                 }
             }
             //Collisions
@@ -124,16 +208,17 @@ namespace Baby_Dragon_Game
                 }
             }
 
-            if (gameover)
+            if (gameover) //Game over system
             {
-                timerDragon.Stop();
-                timerObstacles.Stop();
+                //timerDragon.Stop();
+                //timerObstacles.Stop();
+                //GameOverLabel.Visible = true;
             }
-            else if (scoring)
+            else if (scoring) //Scoring system
             {
                 if (collision)
                 { 
-                    score++;
+                    score = score + 5;
                     ScoreLabel.Text = score.ToString();
                     collision = false;
                 }
@@ -156,6 +241,18 @@ namespace Baby_Dragon_Game
             else
             {
                 dragon.y += dragon.gravity;
+                dragon.dragonRect.Location = new Point(dragon.x, dragon.y);
+            }
+
+            //Dragon MainPanel boundaries
+            if (dragon.y < 0)
+            {
+                dragon.y = 10;
+                dragon.dragonRect.Location = new Point(dragon.x, dragon.y);
+            }
+            if (dragon.y > 725 - dragon.height)
+            {
+                dragon.y = (725 - dragon.height) - 10;
                 dragon.dragonRect.Location = new Point(dragon.x, dragon.y);
             }
             MainPanel.Invalidate(); //Allows MainPanel to be redrawn

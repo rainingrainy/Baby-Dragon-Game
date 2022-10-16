@@ -15,10 +15,10 @@ namespace Baby_Dragon_Game
         public BabyDragon() //Constructor to initialize the properties
         {
             x = 100;
-            y = 450;
-            width = 100;
-            height = 100;
-            gravity = 10;
+            y = 724/2;
+            width = 50;
+            height = 50;
+            gravity = 20;
             dragonRect = new Rectangle(x, y, width, height);
             dragonImg = Properties.Resources.BabyDragonPlace;
         }
@@ -30,7 +30,7 @@ namespace Baby_Dragon_Game
 
         public void moveDragon() //Method that allows the player to input and move the class
         {
-            y -= 50;
+            y -= 100;
             dragonRect.Location = new Point(x, y);
         }
     }

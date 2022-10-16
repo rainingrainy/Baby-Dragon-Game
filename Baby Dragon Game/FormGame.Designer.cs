@@ -32,7 +32,6 @@ namespace Baby_Dragon_Game
             this.components = new System.ComponentModel.Container();
             this.timerDragon = new System.Windows.Forms.Timer(this.components);
             this.timerObstacles = new System.Windows.Forms.Timer(this.components);
-            this.MainPanel = new Baby_Dragon_Game.MainPanel();
             this.NameText = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.ScoreLabel = new System.Windows.Forms.Label();
@@ -41,7 +40,11 @@ namespace Baby_Dragon_Game
             this.MenuStart = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStop = new System.Windows.Forms.ToolStripMenuItem();
             this.label3 = new System.Windows.Forms.Label();
+            this.MainPanel = new Baby_Dragon_Game.MainPanel();
+            this.GameOverLabel = new System.Windows.Forms.Label();
+            this.MenuRestart = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
+            this.MainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // timerDragon
@@ -55,15 +58,6 @@ namespace Baby_Dragon_Game
             this.timerObstacles.Enabled = true;
             this.timerObstacles.Interval = 50;
             this.timerObstacles.Tick += new System.EventHandler(this.timerObstacles_Tick);
-            // 
-            // MainPanel
-            // 
-            this.MainPanel.BackColor = System.Drawing.Color.LightBlue;
-            this.MainPanel.Location = new System.Drawing.Point(25, 284);
-            this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(800, 725);
-            this.MainPanel.TabIndex = 0;
-            this.MainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.MainPanel_Paint);
             // 
             // NameText
             // 
@@ -112,11 +106,12 @@ namespace Baby_Dragon_Game
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuStart,
-            this.MenuStop});
+            this.MenuStop,
+            this.MenuRestart});
             this.menuStrip1.Location = new System.Drawing.Point(25, 1037);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5);
-            this.menuStrip1.Size = new System.Drawing.Size(371, 100);
+            this.menuStrip1.Size = new System.Drawing.Size(735, 100);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -148,6 +143,37 @@ namespace Baby_Dragon_Game
             this.label3.TabIndex = 2;
             this.label3.Text = "Baby Dragon";
             // 
+            // MainPanel
+            // 
+            this.MainPanel.BackColor = System.Drawing.Color.LightBlue;
+            this.MainPanel.Controls.Add(this.GameOverLabel);
+            this.MainPanel.Location = new System.Drawing.Point(25, 284);
+            this.MainPanel.Name = "MainPanel";
+            this.MainPanel.Size = new System.Drawing.Size(800, 725);
+            this.MainPanel.TabIndex = 0;
+            this.MainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.MainPanel_Paint);
+            // 
+            // GameOverLabel
+            // 
+            this.GameOverLabel.AutoSize = true;
+            this.GameOverLabel.Font = new System.Drawing.Font("Papyrus", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GameOverLabel.Location = new System.Drawing.Point(111, 291);
+            this.GameOverLabel.Name = "GameOverLabel";
+            this.GameOverLabel.Size = new System.Drawing.Size(596, 151);
+            this.GameOverLabel.TabIndex = 0;
+            this.GameOverLabel.Text = "Game Over!";
+            this.GameOverLabel.Visible = false;
+            // 
+            // MenuRestart
+            // 
+            this.MenuRestart.BackColor = System.Drawing.Color.Yellow;
+            this.MenuRestart.Font = new System.Drawing.Font("Segoe UI", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MenuRestart.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.MenuRestart.Name = "MenuRestart";
+            this.MenuRestart.Size = new System.Drawing.Size(244, 90);
+            this.MenuRestart.Text = "Restart";
+            this.MenuRestart.Click += new System.EventHandler(this.MenuRestart_Click);
+            // 
             // FormGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -171,6 +197,8 @@ namespace Baby_Dragon_Game
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FormGame_KeyUp);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.MainPanel.ResumeLayout(false);
+            this.MainPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -185,9 +213,11 @@ namespace Baby_Dragon_Game
         private System.Windows.Forms.TextBox NameText;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem MenuStart;
+        private new System.Windows.Forms.ToolStripMenuItem MenuStart;
         private System.Windows.Forms.ToolStripMenuItem MenuStop;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label GameOverLabel;
+        private System.Windows.Forms.ToolStripMenuItem MenuRestart;
     }
 }
 
