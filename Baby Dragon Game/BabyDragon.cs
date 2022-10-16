@@ -14,8 +14,8 @@ namespace Baby_Dragon_Game
         Image dragonImg;
         public BabyDragon() //Constructor to initialize the properties
         {
-            x = 50;
-            y = 10;
+            x = 100;
+            y = 450;
             width = 100;
             height = 100;
             gravity = 10;

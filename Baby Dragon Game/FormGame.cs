@@ -17,8 +17,8 @@ namespace Baby_Dragon_Game
         BottomObstacle[] bobstacle = new BottomObstacle[3];
         Spacing[] spacing = new Spacing[3];
         Graphics g;
-        bool isjumping, spacebar, gameover, scoring;
-        int i, arraycount, gap;
+        bool isjumping, spacebar, gameover, scoring, collision;
+        int i, arraycount, gap, score;
         public FormGame() //Constructor to initialize the properties 
         {
             InitializeComponent();
@@ -34,13 +34,13 @@ namespace Baby_Dragon_Game
 
         private void FormGame_Load(object sender, EventArgs e) //Method for executing events that happen when the form loads
         {
-        
+            score = 0;
         }
 
         private void MainPanel_Paint(object sender, PaintEventArgs e) //Method for painting on the MainPanel
         {
             g = e.Graphics;
-            dragon.drawDragon(g);
+            dragon.drawDragon(g); //Drawing Dragon
             for (i = 0; i < arraycount; i++) //Drawing every instance of every array
             {
                 tobstacle[i].drawTobstacle(g);
@@ -100,15 +100,21 @@ namespace Baby_Dragon_Game
 
             if (gameover)
             {
-                MainPanel.BackColor = Color.DarkBlue;
+                timerDragon.Stop();
+                timerObstacles.Stop();
             }
             else if (scoring)
             {
-                MainPanel.BackColor = Color.DarkGreen;
+                if (collision)
+                { 
+                    score++;
+                    ScoreLabel.Text = score.ToString();
+                    collision = false;
+                }
             }
             else
             {
-                MainPanel.BackColor = Color.LightBlue;
+                collision = true;
             }
             MainPanel.Invalidate(); //Allows MainPanel to be redrawn
         }
