@@ -33,6 +33,16 @@ namespace Baby_Dragon_Game
             }
         }
 
+        private void MenuStart_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MenuStop_Click(object sender, EventArgs e)
+        {
+
+        }
+
         public FormGame() //Constructor to initialize the properties 
         {
             InitializeComponent();
