@@ -20,7 +20,7 @@ namespace Baby_Dragon_Game
             height = 200;
             obstacleSpeed = 10;
             spacingRect = new Rectangle(x, y, width, height);
-            spacingImg = Properties.Resources.SpacingPlace;
+            spacingImg = Properties.Resources.Spacing;
         }
 
         public void drawSpacing(Graphics g) //Method that draws the class and gives an image

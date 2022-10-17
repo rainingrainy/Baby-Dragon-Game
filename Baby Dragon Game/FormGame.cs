@@ -20,6 +20,7 @@ namespace Baby_Dragon_Game
         Graphics g;
         bool isjumping, spacebar, gameover, scoring, collision, entername, changeT, changeB, changeS;
         int i, arraycount, gap, score, gapnum, obs;
+        string playername;
 
         Random r = new Random();
 
@@ -48,6 +49,11 @@ namespace Baby_Dragon_Game
             {
                 timerDragon.Start();
                 timerObstacles.Start();
+                playername = NameText.Text;
+                if (playername == "")
+                {
+                    playername = "Unknown";
+                }
             }
         }
 
@@ -82,8 +88,10 @@ namespace Baby_Dragon_Game
             timerDragon.Stop();
             timerObstacles.Stop();
             GameOverLabel.Visible = false;
+            GameOverLabel2.Visible = false;
             MessageBox.Show("Welcome to Baby Dragon!  To play the game, use your spacebar to avoid the oncoming obstacles.  " +
-                "Every succesful dodge will increase your score but make sure not to touch the obstacles or it's game over!  Click stop to restart.");
+                "Every succesful dodge will increase your score but make sure not to touch the obstacles or it's game over!  " +
+                "Enter your name first before starting, and when you lose, click restart to reset.");
         }
 
         private void MainPanel_Paint(object sender, PaintEventArgs e) //Method for painting on the MainPanel
@@ -100,6 +108,8 @@ namespace Baby_Dragon_Game
 
         private void timerObstacles_Tick(object sender, EventArgs e) //Timer for the all the obstacle classes
         {
+            MainPanel.BackgroundImage = Properties.Resources.Background;
+            MainPanel.BackgroundImageLayout = ImageLayout.Stretch;
             for (i = 0; i < arraycount; i++)
             {
                 //Obstacle movement
@@ -210,15 +220,17 @@ namespace Baby_Dragon_Game
 
             if (gameover) //Game over system
             {
-                //timerDragon.Stop();
-                //timerObstacles.Stop();
-                //GameOverLabel.Visible = true;
+                timerDragon.Stop();
+                timerObstacles.Stop();
+                GameOverLabel2.Text = playername + ", your score was " + score;
+                GameOverLabel2.Visible = true;
+                GameOverLabel.Visible = true;
             }
             else if (scoring) //Scoring system
             {
                 if (collision)
                 { 
-                    score = score + 5;
+                    score++;
                     ScoreLabel.Text = score.ToString();
                     collision = false;
                 }

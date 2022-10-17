@@ -16,11 +16,11 @@ namespace Baby_Dragon_Game
         {
             x = 100;
             y = 724/2;
-            width = 50;
-            height = 50;
+            width = 75;
+            height = 75;
             gravity = 20;
             dragonRect = new Rectangle(x, y, width, height);
-            dragonImg = Properties.Resources.BabyDragonPlace;
+            dragonImg = Properties.Resources.BabyDragon;
         }
 
         public void drawDragon(Graphics g) //Method that draws the class and gives an image

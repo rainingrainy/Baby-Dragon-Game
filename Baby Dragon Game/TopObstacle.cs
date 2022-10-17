@@ -16,11 +16,11 @@ namespace Baby_Dragon_Game
         {
             x = gap;
             y = 0;
-            width = 100;
+            width = 150;
             height = obs;
             obstacleSpeed = 10;
             TobstacleRect = new Rectangle(x, y, width, height);
-            TobstacleImg = Properties.Resources.TopObstaclePlace;
+            TobstacleImg = Properties.Resources.TopObstacle;
         }
 
         public void drawTobstacle(Graphics g) //Method that draws the class and gives an image

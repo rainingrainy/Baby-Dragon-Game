@@ -63,9 +63,9 @@ namespace Baby_Dragon_Game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BabyDragonPlace {
+        internal static System.Drawing.Bitmap BabyDragon {
             get {
-                object obj = ResourceManager.GetObject("BabyDragonPlace", resourceCulture);
+                object obj = ResourceManager.GetObject("BabyDragon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace Baby_Dragon_Game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap SpacingPlace {
+        internal static System.Drawing.Bitmap Background {
             get {
-                object obj = ResourceManager.GetObject("SpacingPlace", resourceCulture);
+                object obj = ResourceManager.GetObject("Background", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,39 @@ namespace Baby_Dragon_Game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap TopObstaclePlace {
+        internal static System.Drawing.Bitmap BottomObstacle {
             get {
-                object obj = ResourceManager.GetObject("TopObstaclePlace", resourceCulture);
+                object obj = ResourceManager.GetObject("BottomObstacle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Spacing {
+            get {
+                object obj = ResourceManager.GetObject("Spacing", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Title {
+            get {
+                object obj = ResourceManager.GetObject("Title", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TopObstacle {
+            get {
+                object obj = ResourceManager.GetObject("TopObstacle", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

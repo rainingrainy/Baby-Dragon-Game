@@ -15,12 +15,12 @@ namespace Baby_Dragon_Game
         public BottomObstacle(int gap, int obs) //Constructor to initialize the properties
         {
             x = gap;
-            width = 100;
-            height = obs - 200;
+            width = 150;
+            height = obs - 250;
             y = 725 - height;
             obstacleSpeed = 10;
             BobstacleRect = new Rectangle(x, y, width, height);
-            BobstacleImg = Properties.Resources.TopObstaclePlace;
+            BobstacleImg = Properties.Resources.BottomObstacle;
         }
 
         public void drawBobstacle(Graphics g) //Method that draws the class and gives an image
