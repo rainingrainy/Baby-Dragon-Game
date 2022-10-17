@@ -236,6 +236,8 @@ namespace Baby_Dragon_Game
             this.Controls.Add(this.menuStrip1);
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximumSize = new System.Drawing.Size(866, 1221);
+            this.MinimumSize = new System.Drawing.Size(866, 1221);
             this.Name = "FormGame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Baby Dragon Game";

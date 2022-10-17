@@ -70,7 +70,7 @@ namespace Baby_Dragon_Game
             for (i = 0; i < arraycount; i++) //instantiation of every index
             {
                 gapnum = 400;
-                obs = r.Next(100, 500);
+                obs = r.Next(50, 425);
                 gap = MainPanel.Right + (gapnum * i);
                 tobstacle[i] = new TopObstacle(gap, obs);
                 obs = 725 - tobstacle[i].height;
@@ -116,7 +116,7 @@ namespace Baby_Dragon_Game
                 tobstacle[i].moveTobstacle();
                 if (tobstacle[i].TobstacleRect.Right < MainPanel.Left)
                 {
-                    obs = r.Next(100, 500);
+                    obs = r.Next(50, 425);
                     tobstacle[i] = new TopObstacle(gap, obs);
                     changeT = true;
                 }
